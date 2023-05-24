@@ -9,7 +9,7 @@
 .resizer-right {
   background-color: #EEEEEE;
   width: 12px;
-  z-index: 20;
+  z-index: 19;
   position: relative;
   right: 6px;
   top: 47%;
@@ -1402,6 +1402,8 @@
   background: #fafafa;
   border-left: 1px solid #e0e0e0;
   height: calc(100vh - 40px);
+  position: relative;
+  z-index: 19;
 }
 
 .quickEditor .section-menu-wrapper {
@@ -2056,6 +2058,13 @@ input[type="checkbox"] {
   left: -20px;
   max-width: calc(100% - 270px);
   width: calc(100% - 240px);
+  padding-left: 0;
+}
+
+.frameDiv-edit.rightWider {
+  left: -20px;
+  max-width: 100%;
+  width: 100%;
   padding-left: 0;
 }
 

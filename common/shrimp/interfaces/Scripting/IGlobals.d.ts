@@ -4,6 +4,7 @@ import { AlertType, ErrorSource, IActionButton } from "../ComponentInterfaces/IA
 import { IComponent } from "../ComponentInterfaces/IComponent";
 import { LogType } from "../ComponentInterfaces/ILogger";
 import { IHostResponseData } from "../IHostResponseData";
+import { ILocationPosition } from "../quick/ILocationPosition";
 import { IDownloadRequest, IRequest } from "../NetworkInterfaces/IRequest";
 import { ICookieValue } from "../quick/ICookieAccess";
 import { IEditorInstance } from "../quick/IEditorInstance";
@@ -11,6 +12,7 @@ import { INetworkResponse } from "../quick/INetworkResponse";
 import { PlatformType } from "../quick/IPlatform";
 import { IShell } from "../quick/IShell";
 import { IUrlOptions } from "../quick/IUrl";
+import { IExcel } from "../quick/IExcel";
 export interface IGlobals_Request {
     async(requestObject: IRequest): Promise<INetworkResponse<Record<string, any>>> | undefined;
     download(requestObject: IDownloadRequest): void;
@@ -63,7 +65,7 @@ export interface IGlobals_Quick {
         newTab?: boolean;
         store?: boolean;
     }) => any;
-    goNative?: ({ code, param, }: {
+    goNative?: ({ code, param }: {
         code: string;
         param?: Record<string, any>;
     }) => void;
@@ -114,12 +116,7 @@ export interface IGlobals_Quick {
     getPageTitle?: () => void;
     getFavicon?: () => void;
     updateComponent: (Comp?: IComponent) => any;
-    exportToXlsx: ({ fileName, items, headers, sheetName, }: {
-        fileName: string;
-        items: Array<object>;
-        headers: Array<object>;
-        sheetName?: string;
-    }) => void;
+    exportToXlsx: (excelFile: IExcel) => void;
     toLongDate: (date: Date, formatType?: string) => string;
     toShortDate: (date: Date, formatType?: string) => string;
     toLongTime: (date: Date, formatType?: string) => string;
@@ -127,6 +124,7 @@ export interface IGlobals_Quick {
     toDate: (dateString: string, formatType?: string) => Date;
     dateFromNow: (dateString: string, formatType?: string) => string;
     platform: IGlobals_platform;
+    getCurrentPosition: () => Promise<ILocationPosition> | undefined;
     toMoney: (number: Number | string, formatType?: string, opt?: Intl.NumberFormatOptions, bigDecimal?: boolean) => string;
     setComponentClass: (componentInstance: IComponent, classes: Array<string>) => void;
     toDecimal: (value: string, radixPoint?: string) => number;
@@ -167,6 +165,10 @@ export interface IGlobals_Quick {
     loading: {
         show: () => void;
         hide: () => void;
+    };
+    render: {
+        block(): void;
+        resume(): void;
     };
 }
 export interface IGlobals_store {

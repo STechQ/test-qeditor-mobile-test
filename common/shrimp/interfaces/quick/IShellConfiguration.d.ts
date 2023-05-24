@@ -17,10 +17,12 @@ import { ICookieAccess } from "./ICookieAccess";
 import { IFormatConfiguration } from "./IFormatConfiguration";
 import { IFormattingDefinition } from "./IFormattingDefinition";
 import { IPlatform } from "./IPlatform";
+import { ILocationPosition } from "./ILocationPosition";
 import { IProcessManager } from "./IProcessManager";
 import { IShellGlobalMethods } from "./IShellGlobalMethods";
 import { IStorageAccess } from "./IStore";
 import { IUrlOptions } from "./IUrl";
+import { IExcel } from "./IExcel";
 export interface IShellConfiguration {
     network: INetwork;
     lridHelper?: (label: string, params: Object) => string;
@@ -34,6 +36,7 @@ export interface IShellConfiguration {
     storeAccess?: IStorageAccess;
     cookieAccess?: ICookieAccess;
     platform?: IPlatform;
+    getCurrentPosition?: () => Promise<ILocationPosition> | undefined;
     compPropsAutoLrid?: boolean;
     osGlobalObjects?: IDictionary<any>;
     shellGlobalMethods?: IShellGlobalMethods;
@@ -46,7 +49,7 @@ export interface IShellConfiguration {
         clear?: () => void;
     };
     processManager?: IProcessManager;
-    dynamicCompHandler?: ({ createdComps, referenceComp, compLocater, parentCollection, append, childName, }: {
+    dynamicCompHandler?: ({ createdComps, referenceComp, compLocater, parentCollection, append, childName }: {
         createdComps: Array<IComponentCollection>;
         referenceComp?: IComponentCollection;
         compLocater: ElementLocation;
@@ -65,12 +68,7 @@ export interface IShellConfiguration {
     getUrl?(options?: {
         noQueryString?: boolean;
     }): string | undefined;
-    exportToXlsxHandler?: ({ fileName, items, headers, sheetName, }: {
-        fileName: string;
-        items: Array<object>;
-        headers: Array<object>;
-        sheetName?: string;
-    }) => void;
+    exportToXlsxHandler?: (excelFile: IExcel) => void;
     setComponentClass?: (componentInstance: IComponentCollection, classes: Array<string>) => void;
     setComponentsProperty?: (componentCollection: IComponentCollection, propertyName: string, propertyValue: any) => void;
     setTheme?: (newTheme: string) => void;
@@ -90,7 +88,7 @@ export interface IShellConfiguration {
         url: string;
         options?: IUrlOptions;
     }): void;
-    onComponentDestroy?: ({ parentComponent, childVDomElement, childKey, }: {
+    onComponentDestroy?: ({ parentComponent, childVDomElement, childKey }: {
         parentComponent: IComponent;
         childVDomElement: IVnode;
         childKey: string;
@@ -149,7 +147,7 @@ export declare type CreateComponentDelegate = ({ componentName, props, events, a
     directives?: Array<IDirectiveElement>;
     styles?: StyleValue;
 }) => ICreatedComponent;
-export declare type ComponentHasPropDelegate = ({ componentName, propName, }: {
+export declare type ComponentHasPropDelegate = ({ componentName, propName }: {
     componentName: string;
     propName: string;
 }) => boolean;

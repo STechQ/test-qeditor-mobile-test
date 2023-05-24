@@ -352,7 +352,7 @@ var componentOptions = {
     VAvatar: {
         class: {
             type: String,
-                editorDefaultValue: "'primary'"
+            editorDefaultValue: "'primary'"
         },
         color: {
             editorDefaultValue: "'primary'"
@@ -839,7 +839,7 @@ var componentOptions = {
         },
         class: {
             type: String,
-                options: ["'custom-scroll'"]
+            options: ["'custom-scroll'"]
         },
         color: {
             type: String,
@@ -1285,6 +1285,16 @@ var componentOptions = {
             editorDefaultValue: "true"
         },
     },
+    VCol: {
+        class: {
+            type: String,
+            options: ["'align-self-start'", "'align-self-center'", "'align-self-end'"]
+        },
+        noGutters: {
+            type: Boolean,
+            default: false,
+        }
+    },
     VCombobox: {
         qValue: {
             type: "any"
@@ -1515,8 +1525,12 @@ var componentOptions = {
         },
         class: {
             type: String,
-                editorDefaultValue: "'container'",
-                options: ["'container--fluid'","'devx-datagrid-header-left'", "'devx-datagrid-header-right'", "'devx-datagrid-header-center'", "'devx-datagrid-header-text-compact'"]
+            editorDefaultValue: "'container'",
+            options: ["'container--fluid'", "'devx-datagrid-header-left'", "'devx-datagrid-header-right'", "'devx-datagrid-header-center'", "'devx-datagrid-header-text-compact'"]
+        },
+        noGutters: {
+            type: Boolean,
+            default: false,
         },
         visible: {
             type: Boolean,
@@ -1679,7 +1693,7 @@ var componentOptions = {
         },
         class: {
             type: String,
-                options: ["'v-table-denser'", "'v-table-hover-hidden'", "'v-table-border-b-hidden'", "'stickytable'"]
+            options: ["'v-table-denser'", "'v-table-hover-hidden'", "'v-table-border-b-hidden'", "'stickytable'"]
         },
         calculateWidths: {
             type: Boolean
@@ -3254,6 +3268,9 @@ nextIcon = 'mdi-plus'}`
         readonly: {
             type: Boolean
         },
+        rules: {
+            type: "Array<any>"
+        },
         success: {
             type: Boolean
         },
@@ -3471,6 +3488,16 @@ nextIcon = 'mdi-plus'}`
         },
         tabindex: {
             type: "number | string"
+        }
+    },
+    VRow: {
+        class: {
+            type: String,
+            options: ["'align-start'", "'align-center'", "'align-end'"]
+        },
+        noGutters: {
+            type: Boolean,
+            default: false,
         }
     },
     VSelect: {
@@ -4177,7 +4204,7 @@ nextIcon = 'mdi-plus'}`
         },
         class: {
             type: String,
-                options: ["'tab-header-border-radius-left'", "'tab-header-border-radius-right'"]
+            options: ["'tab-header-border-radius-left'", "'tab-header-border-radius-right'"]
         },
         dark: {
             type: Boolean
@@ -4242,7 +4269,7 @@ nextIcon = 'mdi-plus'}`
         },
         class: {
             type: String,
-                options: ["'tab-dense'"]
+            options: ["'tab-dense'"]
         },
         centered: {
             type: Boolean
@@ -4854,7 +4881,7 @@ nextIcon = 'mdi-plus'}`
     QLabel: {
         class: {
             type: String,
-                options: ["'devx-ellipsis-qlabel'"]
+            options: ["'devx-ellipsis-qlabel'"]
         },
         maxWidth: {
             type: String

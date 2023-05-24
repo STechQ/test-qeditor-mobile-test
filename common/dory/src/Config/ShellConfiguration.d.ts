@@ -16,6 +16,8 @@ import { IHistoryBasedShellConfiguration, IShellConfiguration } from "../../../s
 import { IShellGlobalMethods } from "../../../shrimp/interfaces/quick/IShellGlobalMethods";
 import { IStore } from "../../../shrimp/interfaces/quick/IStore";
 import { IUrlOptions } from "../../../shrimp/interfaces/quick/IUrl";
+import { ILocationPosition } from "../../../shrimp/interfaces/quick/ILocationPosition";
+import { IExcel } from "../../../shrimp/interfaces/quick/IExcel";
 export declare class ShellConfiguration implements IShellConfiguration {
     network: INetwork;
     lridHelper?: (label: string, dataSource?: object | null) => string;
@@ -30,6 +32,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
     storeAccess?: IStore;
     cookieAccess?: ICookieAccess;
     platform?: IPlatform;
+    getCurrentPosition?: () => Promise<ILocationPosition>;
     compPropsAutoLrid?: boolean;
     osGlobalObjects?: IDictionary<any>;
     shellGlobalMethods?: IShellGlobalMethods;
@@ -43,7 +46,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
         clear: () => void;
     };
     coreComponentOverrider?(componentName: string): IComponentClassEngine | null;
-    dynamicCompHandler?: ({ createdComps, referenceComp, compLocater, parentCollection, append, childName, }: {
+    dynamicCompHandler?: ({ createdComps, referenceComp, compLocater, parentCollection, append, childName }: {
         createdComps?: Array<IComponentCollection>;
         referenceComp?: IComponentCollection;
         compLocater: ElementLocation;
@@ -61,12 +64,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
     getUrl?(options?: {
         noQueryString?: boolean;
     }): string | undefined;
-    exportToXlsxHandler?: ({ fileName, items, headers, sheetName, }: {
-        fileName: string;
-        items: Array<object>;
-        headers: Array<object>;
-        sheetName?: string;
-    }) => void;
+    exportToXlsxHandler?: (excelFile: IExcel) => void;
     setComponentClass?: (compCollection: IComponentCollection, classes: Array<string>) => void;
     setTheme?: (newTheme: string) => void;
     getThemeList?: () => Array<string> | undefined;
@@ -86,7 +84,7 @@ export declare class ShellConfiguration implements IShellConfiguration {
     getRegionList?: () => Array<string> | undefined;
     getCurrentRegion?: () => string | undefined;
     getFormattingDefinitionByCurrentRegion?: () => IFormattingDefinition | undefined;
-    onComponentDestroy?: ({ parentComponent, childVDomElement, childKey, }: {
+    onComponentDestroy?: ({ parentComponent, childVDomElement, childKey }: {
         parentComponent: IComponent;
         childVDomElement: IVnode;
         childKey: string;
