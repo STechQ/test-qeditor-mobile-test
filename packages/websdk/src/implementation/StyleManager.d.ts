@@ -35,7 +35,5 @@ export declare class StyleManager implements IStyleManager {
     static deleteStyleSelector: (compCollection: IComponentCollection, stylePropName: string, breakPoint?: string | undefined) => void;
     private static deleteStyleRule;
     static fromCamelCase: (message: string) => string;
-    static matchSizeMinValue(sizeString?: string): string;
-    static matchSizeMaxValue(sizeString?: string): string;
 }
 //# sourceMappingURL=StyleManager.d.ts.map
