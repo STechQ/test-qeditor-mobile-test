@@ -20,7 +20,9 @@ export declare class StyleManager implements IStyleManager {
     static matchComponentStyles: (compCollection: IComponentCollection) => void;
     static addStyleRule: (matchStyleParam: matchStyle) => void;
     static deleteStyleSelector: (compCollection: IComponentCollection, stylePropName: string, breakPoint?: string | undefined) => void;
-    private static deleteStyleRule;
+    static deleteCompCollectionStyle: (compCollection: IComponentCollection) => void;
+    private static deleteSheet;
+    private static addSheet;
     static fromCamelCase: (message: string) => string;
 }
 //# sourceMappingURL=StyleManager.d.ts.map
